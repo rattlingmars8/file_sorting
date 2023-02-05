@@ -2,7 +2,7 @@
 
 ## What does it do? / Що він виконує?
 
-1. The script goes through the folder specified during the call and sorts all files into groups:
+  1. The script goes through the folder specified during the call and sorts all files into groups:
 
 By default, these are the following groups:
 
@@ -13,15 +13,15 @@ music ('MP3', 'OGG', 'WAV', 'AMR');
 archives ('ZIP', 'GZ', 'TAR');
 unknown extensions
 
-1.1 You can add your own use case here by modifying the settings.py file. If you want to add some type for sorting files, add it to folder_name_file_ext in the form --- `"FOLDER NAME WHERE FILES WILL BE MOVED TO":('.EXTENSION TO BE MOVED TO')`.
-FOR EXAMPLE: `'video': ('.avi', '.mp4', '.mov', '.mkv')`
+    1.1 You can add your own use case here by modifying the settings.py file. If you want to add some type for sorting files, add it to folder_name_file_ext in the form --- `"FOLDER NAME WHERE FILES WILL BE MOVED TO":('.EXTENSION TO BE MOVED TO')`.
+  FOR EXAMPLE: `'video': ('.avi', '.mp4', '.mov', '.mkv')`
 
-2. Performs transliteration of the Cyrillic alphabet into Latin. Replaces all characters except Latin letters, numbers and '.' with '_'.
+  2. Performs transliteration of the Cyrillic alphabet into Latin. Replaces all characters except Latin letters, numbers and '.' with '_'.
 
-3. Deletes folders that are/became empty.
+  3. Deletes folders that are/became empty.
 
 
-1. Скрипт переглядає папку, вказану під час виклику, і сортує всі файли за групами:
+  1. Скрипт переглядає папку, вказану під час виклику, і сортує всі файли за групами:
 
 За замовчування це наступні групи:
 
@@ -32,12 +32,12 @@ FOR EXAMPLE: `'video': ('.avi', '.mp4', '.mov', '.mkv')`
 архіви ('ZIP', 'GZ', 'TAR');
 невідомі розширення
 
-1.1 Ви можете додати сюди свій сценарій використання змінивши файл settings.py. Якщо хочете додати якийсь тип для сортування файлів додайте його у folder_name_file_ext у вигляді --- `"ІМ'Я ПАПКИ КУДИ ПЕРЕМІЩАТИМУТЬСЯ ФАЙЛИ":('.РОЗШИРЕННЯ ЯКЕ ПОТРІБНО ПЕРЕМІСТИТИ')`.
-НАПРИКЛАД: `'video': ('.avi', '.mp4', '.mov', '.mkv')`
+    1.1 Ви можете додати сюди свій сценарій використання змінивши файл settings.py. Якщо хочете додати якийсь тип для сортування файлів додайте його у folder_name_file_ext у вигляді --- `"ІМ'Я ПАПКИ КУДИ ПЕРЕМІЩАТИМУТЬСЯ ФАЙЛИ":('.РОЗШИРЕННЯ ЯКЕ ПОТРІБНО ПЕРЕМІСТИТИ')`.
+  НАПРИКЛАД: `'video': ('.avi', '.mp4', '.mov', '.mkv')`
 
-2. Здійснює транслітерацію кирилиці в латиницю.Замінює всі символи, крім латинських літер, цифр і "." на '_'.
+  2. Здійснює транслітерацію кирилиці в латиницю.Замінює всі символи, крім латинських літер, цифр і "." на '_'.
 
-3. Видаляє папки які є/стали порожніми
+  3. Видаляє папки які є/стали порожніми
 
 
 ## Usage / Використання 
