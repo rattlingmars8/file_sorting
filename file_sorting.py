@@ -2,15 +2,13 @@ import os
 import shutil
 import sys
 from normalize import normalize # Імпорт функції нормалізації імені з іншого файлу
-import settings #Імпорт налаштувань користувача для сортування файлів
-
-settings._init() #Ініціалізація налаштувань
+from settings import CATEGORIES #Імпорт налаштувань користувача для сортування файлів
 
 unknown_types = set()
 known_types = set()
 RESULT = []
     
-SKIPDIRS = list(settings.folder_name_file_ext.keys())
+SKIPDIRS = list(CATEGORIES.keys())
 
 #Нормалізація імен папок та файлів
 def _normalize_items(FOLDER):
@@ -24,7 +22,7 @@ def _normalize_items(FOLDER):
             if os.path.isdir(new_path_dir):
                 _normalize_items(new_path_dir)
         for file in files:
-            for folder_name, extention in settings.folder_name_file_ext.items():
+            for folder_name, extention in CATEGORIES.items():
                 file_ext = os.path.splitext(file)[-1]
                 if file_ext in extention:
                     file_path = os.path.join(root, file)
@@ -49,10 +47,10 @@ def _sort_by_type(FOLDER):
         dirs[:] = [dir for dir in dirs if dir not in SKIPDIRS]
         for file in files:
             file_ext = os.path.splitext(file)[-1]
-            path = next((folder_name for folder_name, extention in settings.folder_name_file_ext.items() if file_ext in extention), None)#Отримуєм ім'я папки зі словника з розширеннями файлів, відповідно до розширення
-            ext = next((extention for folder_name, extention in settings.folder_name_file_ext.items() if file_ext in extention), None)#Отримуєм можливі розширення файлів зі словника з розширеннями файлів
+            path = next((folder_name for folder_name, extention in CATEGORIES.items() if file_ext in extention), None)#Отримуєм ім'я папки зі словника з розширеннями файлів, відповідно до розширення
+            ext = next((extention for folder_name, extention in CATEGORIES.items() if file_ext in extention), None)#Отримуєм можливі розширення файлів зі словника з розширеннями файлів
             if ext is not None and file_ext in ext:
-                print(f'Файл {file}, було переміщено у {os.path.join(FOLDER, path)}\n')
+                print(f'Файл {file}, було переміщено у {os.path.join(FOLDER, path)}\n')# Вивід повідомлень(logs) на екран 
                 RESULT.append(file)
             if path:
                 if not os.path.exists(FOLDER+'/'+path):
@@ -61,13 +59,12 @@ def _sort_by_type(FOLDER):
                 else:
                     shutil.move(os.path.join(root, file), FOLDER+'/'+path)
 
-
 #Розпаковка архівів
 def _unpack_archive():
     for root_dir, sub_dir, files in os.walk(FOLDER+'/archives'):
         for archive in files:
             archive_ext = os.path.splitext(archive)[-1]
-            if archive_ext in settings.folder_name_file_ext['archives']:
+            if archive_ext in CATEGORIES['archives']:
                 filename = os.path.basename(archive)
                 archive_file = FOLDER+'/archives/'+filename
                 if not os.path.exists(FOLDER+'/archives'+'/'+filename.split('.')[0]):
@@ -77,7 +74,6 @@ def _unpack_archive():
                     print(f'Архів {archive}, було розпаковано в {dest_dir}\n')
                 else:
                     pass
-
 
 if __name__ == "__main__":
     FOLDER = sys.argv[1]
@@ -95,3 +91,6 @@ if __name__ == "__main__":
             else:
                 print(f"Перелік ВІДОМИХ програмі розширень файлів: {known_types}\nПерелік НЕВІДОМИХ програмі розширень файлів: {unknown_types.difference(known_types)}\n")
             _del_empty_folder()
+    else:
+        print(f'Теки {sys.argv[1]} на вашому пристрої не існує. Вкажіть правильний шлях до теки!')
+            
