@@ -1,6 +1,6 @@
 # (ENG) FILE SORTER SCRIPT 
 
-## What does it do? / Що він виконує?
+## What does it do?
 1. The script goes through the folder specified during the call and sorts all files into groups:
 
     By default, these are the following groups:
